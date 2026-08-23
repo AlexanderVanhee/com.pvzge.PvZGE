@@ -1,0 +1,76 @@
+{
+  "id": "com.pvzge.PvZGE",
+  "runtime": "org.gnome.Platform",
+  "runtime-version": "50",
+  "sdk": "org.gnome.Sdk",
+  "command": "pvzge",
+  "finish-args": [
+    "--share=ipc",
+    "--socket=wayland",
+    "--socket=fallback-x11",
+    "--socket=pulseaudio",
+    "--device=dri",
+    "--env=GIO_USE_PROXY_RESOLVER=dummy",
+    "--env=GIO_USE_VFS=local",
+    "--env=GSETTINGS_BACKEND=memory"
+  ],
+  "cleanup": [
+    "/include",
+    "/lib/pkgconfig",
+    "*.la",
+    "*.a"
+  ],
+  "modules": [
+    {
+      "name": "game-assets",
+      "buildsystem": "simple",
+      "build-commands": [
+        "mkdir -p /app/share/pvzge",
+        "cp -a docs/. /app/share/pvzge/"
+      ],
+      "cleanup": [
+        "/share/pvzge/**/*.pvr",
+        "/share/pvzge/**/*.pkm",
+        "/share/pvzge/**/*.astc",
+        "/share/pvzge/ads.txt",
+        "/share/pvzge/CNAME",
+        "/share/pvzge/.nojekyll"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/Gzh0821/pvzge_web/archive/refs/tags/v0.12.1.tar.gz",
+          "sha256": "f35f315c1c335015298b0a46ae68b129a756b8a9ed8c441ac7a51e2a41feaa27"
+        }
+      ]
+    },
+    {
+      "name": "pvzge",
+      "buildsystem": "simple",
+      "build-commands": [
+        "install -Dm755 launcher.py /app/bin/pvzge",
+        "install -Dm644 com.pvzge.PvZGE.desktop /app/share/applications/com.pvzge.PvZGE.desktop",
+        "install -Dm644 com.pvzge.PvZGE.metainfo.xml /app/share/metainfo/com.pvzge.PvZGE.metainfo.xml",
+        "install -Dm644 icon.png /app/share/icons/hicolor/256x256/apps/com.pvzge.PvZGE.png"
+      ],
+      "sources": [
+        {
+          "type": "file",
+          "path": "launcher.py"
+        },
+        {
+          "type": "file",
+          "path": "com.pvzge.PvZGE.desktop"
+        },
+        {
+          "type": "file",
+          "path": "com.pvzge.PvZGE.metainfo.xml"
+        },
+        {
+          "type": "file",
+          "path": "icon.png"
+        }
+      ]
+    }
+  ]
+}

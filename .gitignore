@@ -1,0 +1,7 @@
+build/
+repo/
+.flatpak-builder/
+*.flatpak
+__pycache__/
+*.py[cod]
+.venv/

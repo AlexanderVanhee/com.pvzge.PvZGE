@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=PvZ2 Gardendless
+Comment=A rewritten Plants vs Zombies 2 port
+Exec=pvzge
+Icon=com.pvzge.PvZGE
+Terminal=false
+Type=Application
+Categories=Game;StrategyGame;
+Keywords=pvz;plants;zombies;gardendless;
+StartupNotify=true
